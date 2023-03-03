@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@org.springframework.web.bind.annotation.RestController
+@RestController
 @RequestMapping("/library")
-class RestController {
+class RestControllerNew {
 
     private BookService bookService;
 
-    public RestController() {
+    public RestControllerNew() {
     }
 
-    public RestController(BookService bookService) {
+    public RestControllerNew(BookService bookService) {
         this.bookService = bookService;
     }
 
@@ -41,7 +41,7 @@ class RestController {
         return book;
     }
 
-    @DeleteMapping("/api/book?isbn=<isbn>")                  //3. Удаление книги по ISBN
+    @DeleteMapping("/api/book")                  //3. Удаление книги по ISBN
     public String deleteBookController(@PathVariable Character isbn) {
         bookService.deleteBookService(isbn);
         return "Person with id = " + isbn + " was deleted";
