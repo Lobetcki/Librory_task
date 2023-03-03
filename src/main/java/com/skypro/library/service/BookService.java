@@ -8,18 +8,18 @@ import java.util.List;
 public interface BookService {
 
     //1. Создание книги с помощью запроса INSERT
-    void addEBookService(Books book);
+    void addBookService(Books book);
 
     //2. Изменение названия, автора или года издания книги с помощью одного запроса UPDATE который принимает все три параметра
     void updateBookService(Books book);
 
     //3. Удаление книги по ISBN
-    void deleteBookService(Character isbn);
+    void deleteBookService(String isbn);
 
     //4. Получение всех книг
     List<Books> getBooksService();
 
     //5. Получение одной книги по ISBN
-    Books getBookByIsbnService(Character isbn);
+    Books getBookByIsbnService(String isbn);
 
 }

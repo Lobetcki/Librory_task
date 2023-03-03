@@ -1,33 +1,32 @@
 package com.skypro.library.entity;
 
-import javax.persistence.*;
 import java.util.Objects;
 
 public class Books {
 
-    private Character isbn;
+    private String isbn;
 
     private String nameBook;
 
-    private String authorBbook;
+    private String authorBook;
 
-    private int yearPublicationBook;
+    private Integer yearPublicationBook;
 
     public Books() {
     }
 
-    public Books(Character isbn, String nameBook, String authorBbook, int yearPublicationBook) {
+    public Books(String isbn, String nameBook, String authorBook, int yearPublicationBook) {
         this.isbn = isbn;
         this.nameBook = nameBook;
-        this.authorBbook = authorBbook;
+        this.authorBook = authorBook;
         this.yearPublicationBook = yearPublicationBook;
     }
 
-    public Character getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(Character isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -39,12 +38,12 @@ public class Books {
         this.nameBook = nameBook;
     }
 
-    public String getAuthorBbook() {
-        return authorBbook;
+    public String getAuthorBook() {
+        return authorBook;
     }
 
-    public void setAuthorBbook(String authorBbook) {
-        this.authorBbook = authorBbook;
+    public void setAuthorBook(String authorBook) {
+        this.authorBook = authorBook;
     }
 
     public int getYearPublicationBook() {
@@ -60,12 +59,12 @@ public class Books {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Books book = (Books) o;
-        return yearPublicationBook == book.yearPublicationBook && Objects.equals(isbn, book.isbn) && Objects.equals(nameBook, book.nameBook) && Objects.equals(authorBbook, book.authorBbook);
+        return yearPublicationBook == book.yearPublicationBook && Objects.equals(isbn, book.isbn) && Objects.equals(nameBook, book.nameBook) && Objects.equals(authorBook, book.authorBook);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(isbn, nameBook, authorBbook, yearPublicationBook);
+        return Objects.hash(isbn, nameBook, authorBook, yearPublicationBook);
     }
 
     @Override
@@ -73,7 +72,7 @@ public class Books {
         return "Book{" +
                 "isbn=" + isbn +
                 ", nameBook='" + nameBook + '\'' +
-                ", authorBbook='" + authorBbook + '\'' +
+                ", authorBbook='" + authorBook + '\'' +
                 ", yearPublicationBook=" + yearPublicationBook +
                 '}';
     }

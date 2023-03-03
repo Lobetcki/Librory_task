@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/library")
+@RequestMapping("library")
 class RestControllerNew {
 
     private BookService bookService;
@@ -19,19 +19,19 @@ class RestControllerNew {
         this.bookService = bookService;
     }
 
-    @GetMapping("/web")                    //4. Получение всех книг
+    @GetMapping("/api/book")                    //4. Получение всех книг
     public List<Books> getBooksController() {
         return bookService.getBooksService();
     }
 
-    @GetMapping("/api/book/{isbn}")                //5. Получение одной книги по ISBN
-    public Books getBookByIsbnController(@PathVariable Character isbn){
-        return bookService.getBookByIsbnService(isbn);
-    }
+//    @GetMapping("/api/book")                //5. Получение одной книги по ISBN
+//    public Books getBookByIsbnController(@PathVariable String isbn){
+//        return bookService.getBookByIsbnService(isbn);
+//    }
 
     @PostMapping("/api/book")                   //1. Создание книги с помощью запроса INSERT
     public Books addBookController(@RequestBody Books book) {
-        bookService.addEBookService(book);
+        bookService.addBookService(book);
         return book;
     }
 
@@ -42,7 +42,7 @@ class RestControllerNew {
     }
 
     @DeleteMapping("/api/book")                  //3. Удаление книги по ISBN
-    public String deleteBookController(@PathVariable Character isbn) {
+    public String deleteBookController(@PathVariable String isbn) {
         bookService.deleteBookService(isbn);
         return "Person with id = " + isbn + " was deleted";
     }
