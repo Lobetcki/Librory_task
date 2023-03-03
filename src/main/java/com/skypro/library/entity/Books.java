@@ -1,31 +1,22 @@
 package com.skypro.library.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
-@Entity
-@Table(name = "employees")
+public class Books {
 
-public class Book {
-
-    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "isbn")
     private Character isbn;
 
-    @Column(name = "name_book")
     private String nameBook;
 
-    @Column(name = "author_book")
     private String authorBbook;
 
-    @Column(name = "year_publication_booksalary")
     private int yearPublicationBook;
 
-
-    public Book() {
+    public Books() {
     }
 
-    public Book(Character isbn, String nameBook, String authorBbook, int yearPublicationBook) {
+    public Books(Character isbn, String nameBook, String authorBbook, int yearPublicationBook) {
         this.isbn = isbn;
         this.nameBook = nameBook;
         this.authorBbook = authorBbook;
@@ -62,5 +53,28 @@ public class Book {
 
     public void setYearPublicationBook(int yearPublicationBook) {
         this.yearPublicationBook = yearPublicationBook;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Books book = (Books) o;
+        return yearPublicationBook == book.yearPublicationBook && Objects.equals(isbn, book.isbn) && Objects.equals(nameBook, book.nameBook) && Objects.equals(authorBbook, book.authorBbook);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isbn, nameBook, authorBbook, yearPublicationBook);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "isbn=" + isbn +
+                ", nameBook='" + nameBook + '\'' +
+                ", authorBbook='" + authorBbook + '\'' +
+                ", yearPublicationBook=" + yearPublicationBook +
+                '}';
     }
 }
