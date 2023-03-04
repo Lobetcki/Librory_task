@@ -38,7 +38,7 @@ public class BookServiceImpl implements BookService {
     @Transactional                                                    //3. Удаление книги по ISBN
     public void deleteBookService(String isbn) {
         Books book = bookDAO.getBookByIsbnDAO(isbn);
-        if (book == null) {
+        if (book == null || validateIsbn(isbn)) {
             throw new BookException("Person with id = " + isbn + " doesn't exist");
         }
 
@@ -55,9 +55,24 @@ public class BookServiceImpl implements BookService {
     @Transactional                              //5. Получение одной книги по ISBN
     public Books getBookByIsbnService(String isbn) {
         Books book = bookDAO.getBookByIsbnDAO(isbn);
-        if (book == null) {
+        if (book == null || !validateIsbn(isbn)) {
             throw new BookException("Person with isbn = " + isbn + " doesn't exist");
         }
         return book;
+    }
+
+    private boolean validateIsbn(String isbn) {
+        String[] arr = isbn.split("");
+        int sum = 0;
+        int num = 0;
+        for (int i = 0; i < 12; i++) {
+            if (i % 2 == 0) {
+                sum += Integer.parseInt(arr[i]) * 3;
+            } else {
+                sum += Integer.parseInt(arr[i]);
+            }
+            }
+        num = 10 * sum % 10;
+        return num == Integer.parseInt(arr[12]);
     }
 }
