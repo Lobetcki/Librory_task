@@ -14,7 +14,7 @@ public class SpringMVCController {
     @RequestMapping("/web")
     public String getAllBookS() {
 
-        return "dashboard";
+        return "library.dashboard";
     }
 
 }

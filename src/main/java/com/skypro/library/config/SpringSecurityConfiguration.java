@@ -40,8 +40,8 @@ public class SpringSecurityConfiguration {
             // ensure the passwords are encoded properly
             User.UserBuilder users = User.withDefaultPasswordEncoder();
             InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-            manager.createUser(users.username("user").password("password").roles("USER").build());
-            manager.createUser(users.username("admin").password("password").roles("USER","ADMIN").build());
+            manager.createUser(users.username("user").password("1").roles("USER").build());
+            manager.createUser(users.username("admin").password("1").roles("USER","ADMIN").build());
             return manager;
         }
 //
