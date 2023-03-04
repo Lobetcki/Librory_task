@@ -72,7 +72,7 @@ public class BookServiceImpl implements BookService {
                 sum += Integer.parseInt(arr[i]);
             }
             }
-        num = 10 * sum % 10;
+        num = 10 - sum % 10;
         return num == Integer.parseInt(arr[12]);
     }
 }
