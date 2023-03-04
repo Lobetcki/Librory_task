@@ -2,13 +2,14 @@ package com.skypro.library.service;
 
 import com.skypro.library.dao.BookDAO;
 import com.skypro.library.entity.Books;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import com.skypro.library.exceptions.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Component
 public class BookServiceImpl implements BookService {
 
     private BookDAO bookDAO;
