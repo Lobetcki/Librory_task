@@ -15,11 +15,11 @@ public class Books {
     public Books() {
     }
 
-    public Books(String isbn, String nameBook, String authorBook, int yearPublicationBook) {
-        this.isbn = isbn;
+    public Books(String nameBook, String authorBook, int yearPublicationBook, String isbn) {
         this.nameBook = nameBook;
         this.authorBook = authorBook;
         this.yearPublicationBook = yearPublicationBook;
+        this.isbn = isbn;
     }
 
     public String getIsbn() {

@@ -42,7 +42,7 @@ class RestControllerNew {
     }
 
     @DeleteMapping("/api/book")                  //3. Удаление книги по ISBN
-    public String deleteBookController(@PathVariable String isbn) {
+    public String deleteBookController(@RequestParam String isbn) {
         bookService.deleteBookService(isbn);
         return "Person with id = " + isbn + " was deleted";
     }
