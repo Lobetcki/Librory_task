@@ -35,7 +35,7 @@ public class BookDAOImpl implements BookDAO {
 
     @Override                               //3. Удаление книги по ISBN
     public void deleteBookDAO(String isbn) {
-        jdbcTemplate.execute("delete from books where isbn=:isbn");
+        jdbcTemplate.update("DELETE FROM books WHERE isbn=?", isbn);
     }
 
     @Override                                   //4. Получение всех книг

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.skypro.library.exceptions.*;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -38,8 +39,11 @@ public class BookServiceImpl implements BookService {
     @Transactional                                                    //3. Удаление книги по ISBN
     public void deleteBookService(String isbn) {
         Books book = bookDAO.getBookByIsbnDAO(isbn);
-        if (book == null || validateIsbn(isbn)) {
-            throw new BookException("Person with id = " + isbn + " doesn't exist");
+        if (book == null) {
+            throw new BookException("Person with id = " + isbn + " равен null");
+        }
+        if (!(validateIsbn(isbn))) {
+            throw new BookException("Person with id = " + isbn + " нет Валидности");
         }
 
         bookDAO.deleteBookDAO(isbn);
@@ -55,29 +59,41 @@ public class BookServiceImpl implements BookService {
     @Transactional                              //5. Получение одной книги по ISBN
     public Books getBookByIsbnService(String isbn) {
         Books book = bookDAO.getBookByIsbnDAO(isbn);
-        if (book == null || !validateIsbn(isbn)) {
-            throw new BookException("Person with isbn = " + isbn + " doesn't exist");
-        }
         return book;
     }
 
     private boolean validateIsbn(String isbn) {
+        System.out.println(isbn);
+        Books book = getBookByIsbnService(isbn);
+        if (book.getNameBook() == null || book.getAuthorBook() == null ||
+        book.getIsbn() == null || book.getYearPublicationBook() < 0) {
+            throw new BookException("Not all fields of the book are filled in");
+        }
+        System.out.println(book);
+
         String intIsbn = isbn.replaceAll("-", "");
+        System.out.println(intIsbn);
+
+        if (intIsbn.length() != 13 || !intIsbn.matches("[0-9]+")) {
+            throw new BookException("ISBN введен неверно");
+        }
         String[] arr = intIsbn.split("");
         int sum = 0;
         int num = 0;
         for (int i = 0; i < 12; i++) {
 
-            if (i % 2 == 0) {
+            if (!(i % 2 == 0)) {
                 sum += Integer.parseInt(arr[i]) * 3;
-
             } else {
                 sum += Integer.parseInt(arr[i]);
             }
         }
+        if (sum % 10 == 0) {
+
+        }
         num = 10 - sum % 10;
-        System.out.println(num);
+        System.out.println(num + "   " + sum % 10 + "    " + Integer.parseInt(arr[12]));
+        System.out.println(num == Integer.parseInt(arr[12]));
         return num == Integer.parseInt(arr[12]);
     }
-
 }
