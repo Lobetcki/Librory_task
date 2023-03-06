@@ -16,7 +16,7 @@ public class BookDAOImpl implements BookDAO {
     private final JdbcTemplate jdbcTemplate;
 
 
-    public BookDAOImpl(@Lazy JdbcTemplate jdbcTemplate) {
+    public BookDAOImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

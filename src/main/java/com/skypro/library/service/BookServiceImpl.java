@@ -61,18 +61,15 @@ public class BookServiceImpl implements BookService {
         Books book = bookDAO.getBookByIsbnDAO(isbn);
         return book;
     }
-
+                                                            // Валидация ISBN
     private boolean validateIsbn(String isbn) {
-        System.out.println(isbn);
         Books book = getBookByIsbnService(isbn);
         if (book.getNameBook() == null || book.getAuthorBook() == null ||
         book.getIsbn() == null || book.getYearPublicationBook() < 0) {
             throw new BookException("Not all fields of the book are filled in");
         }
-        System.out.println(book);
 
         String intIsbn = isbn.replaceAll("-", "");
-        System.out.println(intIsbn);
 
         if (intIsbn.length() != 13 || !intIsbn.matches("[0-9]+")) {
             throw new BookException("ISBN введен неверно");
@@ -92,8 +89,6 @@ public class BookServiceImpl implements BookService {
 
         }
         num = 10 - sum % 10;
-        System.out.println(num + "   " + sum % 10 + "    " + Integer.parseInt(arr[12]));
-        System.out.println(num == Integer.parseInt(arr[12]));
         return num == Integer.parseInt(arr[12]);
     }
 }

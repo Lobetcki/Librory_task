@@ -26,10 +26,10 @@ class RestControllerNew {
         return bookService.getBooksService();
     }
 
-    @GetMapping("/api/book/{isbn}")                //5. Получение одной книги по ISBN
-    public Books getBookByIsbnController(@PathVariable String isbn){
-        return bookService.getBookByIsbnService(isbn);
-    }
+//    @GetMapping("/api/book/{isbn}")                //5. Получение одной книги по ISBN
+//    public Books getBookByIsbnController(@PathVariable String isbn){
+//        return bookService.getBookByIsbnService(isbn);
+//    }
 
     @PostMapping("/api/book")                   //1. Создание книги с помощью запроса INSERT
     public Books addBookController(@RequestBody Books book) {
