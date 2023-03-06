@@ -14,8 +14,8 @@ public class BookServiceImpl implements BookService {
 
     private BookDAO bookDAO;
 
-    public BookServiceImpl() {
-    }
+//    public BookServiceImpl() {
+//    }
 
     public BookServiceImpl(BookDAO bookDAO) {
         this.bookDAO = bookDAO;
@@ -62,17 +62,22 @@ public class BookServiceImpl implements BookService {
     }
 
     private boolean validateIsbn(String isbn) {
-        String[] arr = isbn.split("");
+        String intIsbn = isbn.replaceAll("-", "");
+        String[] arr = intIsbn.split("");
         int sum = 0;
         int num = 0;
         for (int i = 0; i < 12; i++) {
+
             if (i % 2 == 0) {
                 sum += Integer.parseInt(arr[i]) * 3;
+
             } else {
                 sum += Integer.parseInt(arr[i]);
             }
-            }
+        }
         num = 10 - sum % 10;
+        System.out.println(num);
         return num == Integer.parseInt(arr[12]);
     }
+
 }

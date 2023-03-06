@@ -15,10 +15,6 @@ public class BookDAOImpl implements BookDAO {
 
     private final JdbcTemplate jdbcTemplate;
 
-    @Bean
-    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
-        return new JdbcTemplate(dataSource);
-    };
 
     public BookDAOImpl(@Lazy JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -39,17 +35,17 @@ public class BookDAOImpl implements BookDAO {
 
     @Override                               //3. Удаление книги по ISBN
     public void deleteBookDAO(String isbn) {
-        jdbcTemplate.execute("delete from library.public.books where isbn=:isbn");
+        jdbcTemplate.execute("delete from books where isbn=:isbn");
     }
 
     @Override                                   //4. Получение всех книг
     public List<Books> getBooksDAO() {
-        return jdbcTemplate.query("SELECT * FROM library.public.books", new BeanPropertyRowMapper<>(Books.class));
+        return jdbcTemplate.query("SELECT * FROM books", new BeanPropertyRowMapper<>(Books.class));
     }
 
     @Override                                   //5. Получение одной книги по ISBN
     public Books getBookByIsbnDAO(String isbn) {
-        return jdbcTemplate.query("SELECT * FROM library.public.books WHERE isbn=?",
+        return jdbcTemplate.query("SELECT * FROM books WHERE isbn=?",
                 new Object[]{isbn},
                 new BeanPropertyRowMapper<>(Books.class)).stream().findAny().orElse(null);
     }

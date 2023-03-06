@@ -2,29 +2,31 @@ package com.skypro.library.controller;
 
 import com.skypro.library.entity.Books;
 import com.skypro.library.service.BookService;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("library")
+//@EnableWebSecurity
 class RestControllerNew {
 
     private BookService bookService;
 
-    public RestControllerNew() {
-    }
+//    public RestControllerNew() {
+//    }
 
     public RestControllerNew(BookService bookService) {
         this.bookService = bookService;
     }
 
-    @GetMapping("/")                    //4. Получение всех книг
+    @GetMapping("/api/book")                    //4. Получение всех книг
     public List<Books> getBooks() {
         return bookService.getBooksService();
     }
 
-    @GetMapping("/api/book")                //5. Получение одной книги по ISBN
+    @GetMapping("/api/book/{isbn}")                //5. Получение одной книги по ISBN
     public Books getBookByIsbnController(@PathVariable String isbn){
         return bookService.getBookByIsbnService(isbn);
     }

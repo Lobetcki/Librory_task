@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="book : ${book}">
+        <tr th:each="book : ${books}">
             <td th:text="${book.nameBook}"></td>
             <td th:text="${book.authorBook}"></td>
             <td th:text="${book.isbn}"></td>
@@ -30,3 +30,4 @@
 </div>
 </body>
 </html>
+
